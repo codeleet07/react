@@ -1,0 +1,185 @@
+<html >
+<head>
+    <title>Registration Page</title>
+    <style>
+           body {
+            font-family: TimesNe sans-serif;
+            background-color: #800080;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #808080;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #datetime {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <p id="firstNameError" class="error"></p>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <p id="lastNameError" class="error"></p>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <p id="passwordError" class="error"></p>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <p id="confirmPasswordError" class="error"></p>
+
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female" required>
+            <label for="female">Female</label>
+            <p id="genderError" class="error"></p>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile" required>
+            <p id="mobileError" class="error"></p>
+
+            <label for="dob">Date of Birth (dd-mm-yyyy):</label>
+            <input type="text" id="dob" name="dob" required>
+            <p id="dobError" class="error"></p>
+
+            <label for="email">Email Address:</label>
+            <input type="text" id="email" name="email" required>
+            <p id="emailError" class="error"></p>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="datetime">
+      <script>
+            function updateDateTime() {
+                const now = new Date();
+                const date = now.toLocaleDateString();
+                const time = now.toLocaleTimeString();
+                document.getElementById('datetime').textContent = `${date} ${time}`;
+            }
+            setInterval(updateDateTime, 1000);
+            updateDateTime(); // Initial call
+        </script>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            const errorElements = document.getElementsByClassName("error");
+            for (const errorElement of errorElements) {
+                errorElement.textContent = "";
+            }
+
+            let isValid = true;
+
+            // First Name validation
+            const firstName = document.getElementById("firstName").value;
+            if (!firstName.match(/^[a-zA-Z]+$/)) {
+                document.getElementById("firstNameError").textContent = "First Name must contain only alphabetic characters";
+                isValid = false;
+            }
+
+            // Last Name validation
+            const lastName = document.getElementById("lastName").value;
+            if (!lastName.match(/^[a-zA-Z]+$/)) {
+                document.getElementById("lastNameError").textContent = "Last Name must contain only alphabetic characters";
+                isValid = false;
+            }
+
+            // Password validation
+            const password = document.getElementById("password").value;
+            if (password.length < 6 || password.length > 20) {
+                document.getElementById("passwordError").textContent = "Password must be between 6 and 20 characters";
+                isValid = false;
+            }
+
+            // Confirm Password validation
+          const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").textContent = "Passwords do not match";
+                isValid = false;
+            }
+
+            // Gender validation
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                document.getElementById("genderError").textContent = "Please select a gender";
+                isValid = false;
+            }
+
+            // Mobile Number validation (assuming 10 digits)
+            const mobile = document.getElementById("mobile").value;
+            if (!mobile.match(/^\d{10}$/)) {
+                document.getElementById("mobileError").textContent = "Mobile Number must be 10 digits";
+                isValid = false;
+            }
+
+            // Date of Birth validation (dd-mm-yyyy)
+            const dob = document.getElementById("dob").value;
+            if (!dob.match(/^\d{2}-\d{2}-\d{4}$/)) {
+                document.getElementById("dobError").textContent = "Date of Birth must be in the format dd-mm-yyyy";
+                isValid = false;
+            }
+
+            // Email Address validation
+            const email = document.getElementById("email").value;
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) || email.startsWith("@") || email.indexOf("@") >= email.lastIndexOf(".")) {
+                document.getElementById("emailError").textContent = "Invalid email address format";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

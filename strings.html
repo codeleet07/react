@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Operations</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .string-operations {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        #result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>String Operations</h1>
+    <div class="string-operations">
+        <input type="text" id="inputString" placeholder="Enter a string">
+        <button onclick="getStringLength()">Get Length</button>
+        <button onclick="toUpperCase()">Convert to Uppercase</button>
+<button onclick="toLowerCase()">Convert to Lowercase</button>
+        <button onclick="reverseString()">Reverse</button>
+        <p id="result">Result: </p>
+    </div>
+
+    <script>
+        function getStringLength() {
+            const inputString = document.getElementById("inputString").value;
+            const length = inputString.length;
+            document.getElementById("result").textContent = `Length: ${length}`;
+        }
+
+        function toUpperCase() {
+            const inputString = document.getElementById("inputString").value;
+            const upperCaseString = inputString.toUpperCase();
+            document.getElementById("result").textContent = `Uppercase: ${upperCaseString}`;
+        }
+
+        function reverseString() {
+            const inputString = document.getElementById("inputString").value;
+            const reversedString = inputString.split('').reverse().join('');
+            document.getElementById("result").textContent = `Reversed: ${reversedString}`;
+        }
+function toLowerCase() {
+            const inputString = document.getElementById("inputString").value;
+            const lowerCaseString = inputString.toLowerCase();
+            document.getElementById("result").textContent = `Lowercase: ${lowerCaseString}`;
+        }
+    </script>
+</body>
+</html>

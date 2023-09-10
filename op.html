@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arithmetic Calculator</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .calculator {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        #result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arithmetic Calculator</h1>
+    <div class="calculator">
+        <input type="text" id="num1" placeholder="Enter number 1">
+        <input type="text" id="num2" placeholder="Enter number 2">
+        <div class="buttons">
+            <button onclick="performOperation('add')">Addition</button>
+            <button onclick="performOperation('subtract')">Subtraction</button>
+            <button onclick="performOperation('multiply')">Multiplication</button>
+            <button onclick="performOperation('divide')">Division</button>
+        </div>
+        <p id="result">Result: </p>
+    </div>
+
+    <script>
+        function performOperation(operation) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let result;
+
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        result = "Cannot divide by zero";
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                default:
+                    result = "Invalid operation";
+            }
+
+            document.getElementById("result").textContent = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>
